@@ -1,0 +1,233 @@
+# =============================================================================
+#  FarmWatch — .gitignore
+#  Covers: Spring Boot (Maven), Angular, Python (Pi), Arduino (ESP32-CAM)
+# =============================================================================
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Java / Spring Boot / Maven
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Compiled output
+**/target/
+**/bin/
+**/build/
+**/out/
+**/*.class
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+dependency-reduced-pom.xml
+
+# Spring Boot
+HELP.md
+**/spring-boot-*.txt
+
+# Logs
+*.log
+*.log.*
+logs/
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Angular / Node.js
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Node modules
+**/node_modules/
+**/jspm_packages/
+**/bower_components/
+
+# Angular cache and build output
+**/.angular/
+**/dist/
+**/tmp/
+
+# Coverage
+**/coverage/
+**/.nyc_output/
+
+# npm / yarn / pnpm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.yarn-integrity
+
+# IDE-specific Angular files
+**/.sass-cache/
+**/connect.lock
+**/typings/
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Python (Raspberry Pi scripts)
+# ─────────────────────────────────────────────────────────────────────────────
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+*.egg-info/
+.eggs/
+dist/
+
+# Virtual environments
+venv/
+venv310/
+env/
+ENV/
+.venv/
+.env/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+
+# Captured snapshots and audio recordings (don't commit personal data)
+captures/
+recordings/
+*.wav
+*.mp3
+*.ogg
+
+# AI model files (too large for git; share via Drive / Hugging Face)
+# Comment these out if you want to track them via Git LFS instead.
+*.h5
+*.tflite
+*.pb
+*.onnx
+*.npy
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Arduino / ESP32
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Arduino IDE build artifacts
+*.ino.bin
+*.ino.elf
+*.ino.hex
+*.ino.map
+build/
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  IDEs & editors
+# ─────────────────────────────────────────────────────────────────────────────
+
+# IntelliJ IDEA / Spring Tool Suite
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+.sts4-cache/
+
+# VS Code (keep settings.json if you want to share workspace config)
+.vscode/
+*.code-workspace
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Operating systems
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.Trash-*
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Secrets and local configuration  ⚠️  IMPORTANT
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Spring Boot environment-specific configs
+application-local.yml
+application-local.properties
+application-secret.yml
+application-secret.properties
+
+# Generic .env files
+.env
+.env.local
+.env.*.local
+*.env
+
+# Credentials / keys
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# JWT secrets, DB passwords, API tokens — keep them OUT of git
+secrets.yml
+secrets.json
+credentials.json
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Documentation & reports build artifacts
+# ─────────────────────────────────────────────────────────────────────────────
+
+# LaTeX
+*.aux
+*.lof
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.synctex.gz
+*.synctex(busy)
+*.fdb_latexmk
+*.bbl
+*.blg
+*.run.xml
+*.bcf

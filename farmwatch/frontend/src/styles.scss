@@ -1,0 +1,68 @@
+/* src/styles.scss — global styles */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ff: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --fm: 'Space Mono', 'Courier New', monospace;
+  --c-bg:      #0e0f0e;
+  --c-surface: #161917;
+  --c-border:  rgba(255, 255, 255, 0.08);
+  --c-border2: rgba(255, 255, 255, 0.14);
+  --c-text:    #e8e6df;
+  --c-muted:   #7a7870;
+  --c-accent:  #c94b1e;
+  --c-ok:      #3a8a52;
+  --c-warn:    #c47f15;
+  --c-danger:  #d94040;
+  --rad:       6px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--ff);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── Shared card ─────────────────────────────────────────────────────────── */
+.card {
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-border);
+  border-radius: var(--rad);
+  padding: 12px;
+}
+
+.card-title {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Shared pill badges ──────────────────────────────────────────────────── */
+.pill {
+  display: inline-block;
+  font-family: var(--fm);
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 2px;
+
+  &.cam  { background: rgba(59,139,212,.12);  color: #5b9fd4; border: 0.5px solid rgba(59,139,212,.3); }
+  &.mic  { background: rgba(99,153,34,.12);   color: #7ab84a; border: 0.5px solid rgba(99,153,34,.3); }
+  &.both { background: rgba(201,75,30,.12);   color: #c94b1e; border: 0.5px solid rgba(201,75,30,.3); }
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-border2); border-radius: 2px; }

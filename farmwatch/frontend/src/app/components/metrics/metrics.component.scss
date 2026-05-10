@@ -1,0 +1,30 @@
+/* src/app/components/metrics/metrics.component.scss */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.metric {
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-border);
+  border-radius: var(--rad);
+  padding: 12px 14px;
+}
+.metric-val {
+  font-family: var(--fm);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--c-text);
+  &.amber { color: var(--c-warn); }
+  &.green { color: var(--c-ok); }
+  &.red   { color: var(--c-danger); }
+}
+.metric-lbl {
+  font-size: 10px;
+  font-family: var(--fm);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}

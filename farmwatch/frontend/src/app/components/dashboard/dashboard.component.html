@@ -1,0 +1,56 @@
+<!-- src/app/components/dashboard/dashboard.component.html — REPLACE existing -->
+<div class="shell">
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="logo">FARM<span class="accent">WATCH</span>
+      <span class="logo-sub">/ Bird Detection System</span>
+    </div>
+    <div class="status-row">
+      <span class="badge" [class.live]="wsConnected" [class.offline]="!wsConnected">
+        <span class="dot" [class.pulse]="wsConnected"></span>
+        {{ wsConnected ? 'System Online' : 'Connecting...' }}
+      </span>
+      <span class="badge alert" *ngIf="summary?.sirenActive">
+        <span class="dot pulse"></span>SIREN ACTIVE
+      </span>
+      <span class="clock">{{ formattedTime }}</span>
+
+      <!-- User menu -->
+      <div class="user-menu">
+        <span class="username">{{ auth.getUsername() }}</span>
+        <button class="topbar-btn" (click)="showChangePassword = true" title="Change password">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+          </svg>
+        </button>
+        <button class="topbar-btn logout" (click)="logout()" title="Logout">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="main">
+    <app-metrics class="full-w" [summary]="summary"></app-metrics>
+    <app-camera [latestEvent]="latestEvent"></app-camera>
+    <div class="right-col">
+      <app-siren [summary]="summary"></app-siren>
+      <app-hourly-chart></app-hourly-chart>
+    </div>
+    <app-detection-log class="span-1"></app-detection-log>
+    <app-heatmap class="span-1"></app-heatmap>
+    <app-stats-table class="full-w"></app-stats-table>
+  </main>
+
+  <!-- Change password modal -->
+  <app-change-password
+    *ngIf="showChangePassword"
+    (closed)="showChangePassword = false">
+  </app-change-password>
+</div>

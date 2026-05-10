@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/farmwatch
+    username: farmwatch
+    password: farmwatch1978
+    driver-class-name: org.postgresql.Driver
+  spring:
+    jpa:
+      hibernate:
+        ddl-auto=create:
+
+  jpa:
+    hibernate:
+      ddl-auto: validate          # use 'create' on first run, then 'validate'
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  mvc:
+    cors:
+      allowed-origins: "http://localhost:4200"
+
+server:
+  port: 8082
+
+# FarmWatch custom config
+#farmwatch:
+#  camera:
+#    stream-base-url: "rtsp://192.168.1.10"
+#    mjpeg-proxy-url: "http://localhost:8081"   # if using an MJPEG proxy
+#  siren:
+#    gpio-pin: 17                               # Raspberry Pi GPIO pin
+#    default-duration-secs: 10
+#  detection:
+#    confidence-threshold: 80.0
+#    auth:
+#      jwt-secret: "abcdefghijklmnopqrstuvwxyz"  # min 32 chars
+#      jwt-expiration-ms: 86400000   # 24 hours
+#      admin-password: "admin123"    # default password, change on first login
+#  camera:
+#    espcam-url: "http://192.168.1.XX:81/stream"   # your ESP-CAM IP
+#    pi-stream-url: "http://localhost:5000/stream"  # Pi camera via Flask
+#    mjpeg-proxy-url: "http://localhost:5000/stream"
+farmwatch:
+  auth:
+    jwt-secret: "farmwatch-super-secret-key-change-this-2025"
+    jwt-expiration-ms: 86400000
+    admin-password: "admin123"
+
+  camera:
+    espcam-url: "http://192.168.100.37:81/stream"
+    pi-stream-url: "http://localhost:4000/stream"
+    mjpeg-proxy-url: "http://192.168.100.37:81/stream"
+
+  siren:
+    gpio-pin: 17
+    auto_duration_secs: 10
+
+  detection:
+    confidence-threshold: 80.0

@@ -1,0 +1,27 @@
+<!-- src/app/components/detection-log/detection-log.component.html -->
+<div class="card log-card">
+  <div class="card-title">
+    Recent detections
+    <span>live feed</span>
+  </div>
+
+  <div class="log-empty" *ngIf="entries.length === 0">
+    <span>Waiting for detections...</span>
+  </div>
+
+  <div class="log-list">
+    <div class="log-item" *ngFor="let e of entries">
+      <span class="log-time">{{ e.formattedTime }}</span>
+      <span class="log-dot" [style.background]="dotColor(e.method)"></span>
+      <span class="log-msg">
+        Bird detected —
+        <span class="pill" [class]="e.method === 'CAMERA' ? 'cam' : e.method === 'SOUND' ? 'mic' : 'both'">
+          {{ e.method }}
+        </span>
+        · Sector {{ e.sectorCode }}
+        <span *ngIf="e.speciesEst"> · {{ e.speciesEst }}</span>
+      </span>
+      <span class="log-conf">{{ e.confidence.toFixed(0) }}%</span>
+    </div>
+  </div>
+</div>

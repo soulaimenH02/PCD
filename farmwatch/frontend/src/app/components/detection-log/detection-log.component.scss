@@ -1,0 +1,60 @@
+.log-card { max-height: 280px; display: flex; flex-direction: column; }
+
+.log-empty {
+  font-size: 11px;
+  color: var(--c-muted);
+  padding: 12px 0;
+  text-align: center;
+}
+
+.log-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--c-border);
+
+  &:last-child { border-bottom: none; }
+  &:first-child { animation: slide-in 0.25s ease; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.log-time {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--c-muted);
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+.log-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.log-msg {
+  font-size: 12px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.log-conf {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--c-muted);
+  flex-shrink: 0;
+}

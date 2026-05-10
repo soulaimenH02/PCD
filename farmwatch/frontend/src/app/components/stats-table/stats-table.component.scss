@@ -1,0 +1,101 @@
+/* src/app/components/stats-table/stats-table.component.scss */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    font-family: var(--fm);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 0.5px solid var(--c-border);
+    white-space: nowrap;
+
+    &.sortable {
+      cursor: pointer;
+      user-select: none;
+      &:hover { color: var(--c-text); }
+    }
+  }
+
+  td {
+    font-size: 12px;
+    padding: 7px 10px;
+    border-bottom: 0.5px solid var(--c-border);
+    color: var(--c-text);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .data-row:hover td { background: rgba(255,255,255,0.03); }
+}
+
+.sort-arrow {
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+.mono {
+  font-family: var(--fm);
+  font-size: 11px;
+}
+
+.loading-cell,
+.empty-cell {
+  text-align: center;
+  color: var(--c-muted);
+  padding: 20px;
+  font-size: 12px;
+}
+
+/* Confidence coloring */
+.conf-high { color: var(--c-ok); }
+.conf-mid  { color: var(--c-warn); }
+.conf-low  { color: var(--c-danger); }
+
+/* Siren cell */
+.siren-cell {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--c-muted);
+  &.triggered { color: var(--c-danger); }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.pg-btn {
+  font-family: var(--fm);
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 0.5px solid var(--c-border);
+  background: transparent;
+  color: var(--c-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover:not(:disabled) { border-color: var(--c-border2); color: var(--c-text); }
+  &.active { background: var(--c-text); color: var(--c-bg); border-color: var(--c-text); }
+  &:disabled { opacity: 0.35; cursor: not-allowed; }
+}
+
+.pg-info {
+  margin-left: auto;
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--c-muted);
+}

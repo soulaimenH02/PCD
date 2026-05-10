@@ -1,0 +1,33 @@
+<!-- src/app/components/siren/siren.component.html -->
+<div class="card">
+  <div class="card-title">
+    Siren control
+    <span class="mode-badge">{{ sirenMode }}</span>
+  </div>
+
+  <div class="siren-wrap">
+    <button
+      class="siren-btn"
+      [class.active]="sirenActive"
+      [class.disabled-mode]="sirenMode === 'DISABLED'"
+      [disabled]="loading || sirenMode === 'DISABLED'"
+      (click)="toggleSiren()">
+      <span class="siren-icon">🔊</span>
+      <span class="siren-btn-lbl">{{ btnLabel }}</span>
+    </button>
+
+    <div class="siren-status" [class.on]="sirenActive">
+      {{ sirenActive ? '⚠ SIREN ACTIVE' : 'SIREN OFF' }}
+    </div>
+
+    <div class="mode-row">
+      <button
+        *ngFor="let m of modes"
+        class="mode-btn"
+        [class.sel]="sirenMode === m"
+        (click)="setMode(m)">
+        {{ m }}
+      </button>
+    </div>
+  </div>
+</div>

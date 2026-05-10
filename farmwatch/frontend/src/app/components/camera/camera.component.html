@@ -1,0 +1,66 @@
+<!-- src/app/components/camera/camera.component.html — REPLACE existing -->
+<div class="card">
+  <div class="card-title">
+    Live camera feed
+    <span class="cam-label">{{ selectedSource.label }}</span>
+  </div>
+
+  <div class="feed-wrap" [class.detected]="birdDetected">
+
+    <!-- ── Live MJPEG stream ── -->
+    <img
+      *ngIf="!streamError"
+      [src]="authenticatedStreamUrl"
+      class="feed-img"
+      alt="Live camera stream"
+      (error)="onStreamError()" />
+
+    <!-- ── Error / No stream ── -->
+    <div *ngIf="streamError" class="feed-placeholder">
+      <div class="placeholder-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+        </svg>
+      </div>
+      <p class="placeholder-text">Stream unavailable</p>
+      <p class="placeholder-sub">Check camera connection · {{ selectedSource.label }}</p>
+      <button class="retry-btn" (click)="streamError = false">Retry</button>
+    </div>
+
+    <!-- Live badge -->
+    <div class="overlay-live" *ngIf="!streamError">
+      <span class="rec-dot"></span>LIVE
+    </div>
+
+    <!-- Bounding box overlay -->
+    <div *ngIf="showBbox" class="bbox"
+      [style.left.%]="bbox.x"
+      [style.top.%]="bbox.y"
+      [style.width.%]="bbox.w"
+      [style.height.%]="bbox.h">
+      <span class="bbox-label">{{ detectionLabel }}</span>
+    </div>
+
+    <!-- Detection banner -->
+    <div class="detection-banner" [class.visible]="birdDetected">
+      <span class="banner-dot"></span>
+      {{ detectionLabel }}
+    </div>
+  </div>
+
+  <!-- Source selector -->
+  <div class="cam-tabs">
+    <button
+      *ngFor="let src of sources"
+      class="cam-tab"
+      [class.active]="selectedSource.id === src.id"
+      (click)="selectSource(src)">
+      {{ src.label }}
+    </button>
+    <div class="cam-status">
+      <span [class.detected]="birdDetected" [class.clear]="!birdDetected">
+        {{ birdDetected ? '● Bird detected' : '● Clear' }}
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+/* src/app/components/siren/siren.component.scss */
+.mode-badge {
+  font-family: var(--fm);
+  font-size: 9px;
+  color: var(--c-muted);
+}
+
+.siren-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.siren-btn {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2px solid var(--c-danger);
+  background: rgba(217, 64, 64, 0.07);
+  color: var(--c-danger);
+  cursor: pointer;
+  font-family: var(--fm);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s;
+  outline: none;
+
+  &:hover:not(:disabled) {
+    background: rgba(217, 64, 64, 0.15);
+    box-shadow: 0 0 0 6px rgba(217, 64, 64, 0.08);
+  }
+
+  &.active {
+    background: rgba(217, 64, 64, 0.22);
+    animation: siren-ring 0.8s ease-in-out infinite;
+  }
+
+  &.disabled-mode {
+    border-color: var(--c-border2);
+    color: var(--c-muted);
+    cursor: not-allowed;
+  }
+
+  &:disabled { opacity: 0.6; }
+}
+
+.siren-icon { font-size: 24px; line-height: 1; }
+
+@keyframes siren-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 64, 64, 0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(217, 64, 64, 0); }
+}
+
+.siren-status {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--c-muted);
+
+  &.on { color: var(--c-danger); font-weight: 700; }
+}
+
+.mode-row {
+  display: flex;
+  gap: 5px;
+}
+
+.mode-btn {
+  font-family: var(--fm);
+  font-size: 9px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 0.5px solid var(--c-border);
+  background: transparent;
+  color: var(--c-muted);
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.15s;
+
+  &:hover { border-color: var(--c-border2); color: var(--c-text); }
+  &.sel   { background: var(--c-text); color: var(--c-bg); border-color: var(--c-text); }
+}

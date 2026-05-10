@@ -1,0 +1,154 @@
+/* src/app/components/camera/camera.component.scss — REPLACE existing */
+.card { margin-bottom: 0; }
+
+.cam-label {
+  font-family: var(--fm);
+  font-size: 9px;
+  color: var(--c-muted);
+}
+
+.feed-wrap {
+  position: relative;
+  background: #080a08;
+  border-radius: 4px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  transition: border-color 0.3s;
+  &.detected { border-color: rgba(201, 75, 30, 0.6); }
+}
+
+.feed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder */
+.feed-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.placeholder-icon svg { width: 36px; height: 36px; color: rgba(255,255,255,0.15); }
+.placeholder-text { font-family: var(--fm); font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
+.placeholder-sub  { font-size: 10px; color: rgba(255,255,255,0.12); }
+
+.retry-btn {
+  margin-top: 6px;
+  font-family: var(--fm);
+  font-size: 9px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 0.5px solid rgba(201,75,30,0.4);
+  background: transparent;
+  color: rgba(201,75,30,0.7);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: all 0.15s;
+  &:hover { background: rgba(201,75,30,0.1); color: var(--c-accent); }
+}
+
+/* Live badge */
+.overlay-live {
+  position: absolute;
+  top: 8px; right: 8px;
+  font-family: var(--fm);
+  font-size: 9px;
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.rec-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-danger);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+/* Bounding box */
+.bbox {
+  position: absolute;
+  border: 1.5px solid rgba(201, 75, 30, 0.8);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.bbox-label {
+  position: absolute;
+  top: -16px; right: 0;
+  font-family: var(--fm);
+  font-size: 8px;
+  color: rgba(201, 75, 30, 0.9);
+  white-space: nowrap;
+  background: rgba(0,0,0,0.5);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+/* Detection banner */
+.detection-banner {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(201, 75, 30, 0.85);
+  color: #fff;
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+  &.visible { transform: translateY(0); }
+}
+.banner-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+/* Tabs */
+.cam-tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  align-items: center;
+}
+.cam-tab {
+  font-family: var(--fm);
+  font-size: 9px;
+  padding: 4px 9px;
+  border-radius: 3px;
+  border: 0.5px solid var(--c-border);
+  background: transparent;
+  color: var(--c-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.04em;
+  &:hover { border-color: var(--c-border2); color: var(--c-text); }
+  &.active { background: var(--c-text); color: var(--c-bg); border-color: var(--c-text); }
+}
+.cam-status {
+  margin-left: auto;
+  font-family: var(--fm);
+  font-size: 9px;
+  .detected { color: var(--c-danger); }
+  .clear    { color: var(--c-ok); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}

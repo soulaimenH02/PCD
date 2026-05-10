@@ -1,0 +1,25 @@
+<!-- src/app/components/metrics/metrics.component.html -->
+<div class="metrics-row" *ngIf="summary">
+  <div class="metric">
+    <div class="metric-val amber">{{ summary.detectionsToday }}</div>
+    <div class="metric-lbl">Detections today</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val">{{ summary.detectionsThisWeek }}</div>
+    <div class="metric-lbl">This week</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val green">{{ summary.sirenTriggersToday }}</div>
+    <div class="metric-lbl">Siren triggers today</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val red">{{ lastDetection }}</div>
+    <div class="metric-lbl">Last detection</div>
+  </div>
+</div>
+<div class="metrics-row skeleton" *ngIf="!summary">
+  <div class="metric" *ngFor="let i of [1,2,3,4]">
+    <div class="metric-val">—</div>
+    <div class="metric-lbl">Loading...</div>
+  </div>
+</div>

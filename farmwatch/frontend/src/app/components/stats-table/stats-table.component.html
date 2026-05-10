@@ -1,0 +1,80 @@
+<!-- src/app/components/stats-table/stats-table.component.html -->
+<div class="card">
+  <div class="card-title">
+    Detection log — statistics table
+    <span>{{ totalElements }} total records</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th (click)="sort('detectedAt')" class="sortable">
+            Date <span class="sort-arrow" *ngIf="sortCol === 'detectedAt'">{{ sortDir === 'asc' ? '↑' : '↓' }}</span>
+          </th>
+          <th>Time</th>
+          <th (click)="sort('method')" class="sortable">
+            Method <span class="sort-arrow" *ngIf="sortCol === 'method'">{{ sortDir === 'asc' ? '↑' : '↓' }}</span>
+          </th>
+          <th (click)="sort('confidence')" class="sortable">
+            Confidence <span class="sort-arrow" *ngIf="sortCol === 'confidence'">{{ sortDir === 'asc' ? '↑' : '↓' }}</span>
+          </th>
+          <th>Species (est.)</th>
+          <th (click)="sort('sectorCode')" class="sortable">
+            Sector <span class="sort-arrow" *ngIf="sortCol === 'sectorCode'">{{ sortDir === 'asc' ? '↑' : '↓' }}</span>
+          </th>
+          <th>Siren</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngIf="loading">
+          <td colspan="8" class="loading-cell">Loading...</td>
+        </tr>
+
+        <tr *ngIf="!loading && detections.length === 0">
+          <td colspan="8" class="empty-cell">No detections recorded yet.</td>
+        </tr>
+
+        <tr *ngFor="let d of detections" class="data-row">
+          <td class="mono">{{ formatDate(d.detectedAt) }}</td>
+          <td class="mono">{{ formatTime(d.detectedAt) }}</td>
+          <td>
+            <span class="pill" [class]="d.method === 'CAMERA' ? 'cam' : d.method === 'SOUND' ? 'mic' : 'both'">
+              {{ d.method }}
+            </span>
+          </td>
+          <td class="mono" [class]="'conf-' + confidenceClass(d.confidence)">
+            {{ d.confidence.toFixed(0) }}%
+          </td>
+          <td>{{ d.speciesEst ?? '—' }}</td>
+          <td class="mono">{{ d.sectorCode }}</td>
+          <td>
+            <span class="siren-cell" [class.triggered]="d.sirenTriggered">
+              {{ d.sirenTriggered ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td class="mono">{{ formatDuration(d.durationSecs) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button class="pg-btn" [disabled]="currentPage === 0" (click)="goToPage(currentPage - 1)">‹ Prev</button>
+
+    <button
+      *ngFor="let p of pages"
+      class="pg-btn"
+      [class.active]="p === currentPage"
+      (click)="goToPage(p)">
+      {{ p + 1 }}
+    </button>
+
+    <button class="pg-btn" [disabled]="currentPage === totalPages - 1" (click)="goToPage(currentPage + 1)">Next ›</button>
+
+    <span class="pg-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+  </div>
+</div>

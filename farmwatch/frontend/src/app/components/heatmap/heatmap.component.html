@@ -1,0 +1,50 @@
+<!-- src/app/components/heatmap/heatmap.component.html -->
+<div class="card">
+  <div class="card-title">Weekly heatmap <span>Mon–Sun × hour</span></div>
+
+  <div class="heatmap-wrap">
+    <!-- Day headers -->
+    <div class="hm-corner"></div>
+    <div class="hm-day" *ngFor="let d of days">{{ d }}</div>
+
+    <!-- Rows -->
+    <ng-container *ngFor="let row of rows; let hi = index">
+      <div class="hm-hour">{{ hours[hi] }}</div>
+      <div
+        class="hm-cell"
+        *ngFor="let cell of row"
+        [style.background]="'rgba(201,75,30,' + cell.opacity + ')'"
+        [title]="cell.count + ' detections'">
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Method breakdown -->
+  <div class="breakdown" *ngIf="breakdown">
+    <div class="card-title" style="margin-top: 12px;">Detection method breakdown</div>
+
+    <div class="bar-row">
+      <span class="bar-lbl">Camera</span>
+      <div class="bar-track">
+        <div class="bar-fill cam" [style.width.%]="breakdown.cameraPercent"></div>
+      </div>
+      <span class="bar-pct cam-txt">{{ breakdown.cameraPercent }}%</span>
+    </div>
+
+    <div class="bar-row">
+      <span class="bar-lbl">Sound</span>
+      <div class="bar-track">
+        <div class="bar-fill mic" [style.width.%]="breakdown.soundPercent"></div>
+      </div>
+      <span class="bar-pct mic-txt">{{ breakdown.soundPercent }}%</span>
+    </div>
+
+    <div class="bar-row">
+      <span class="bar-lbl">Both</span>
+      <div class="bar-track">
+        <div class="bar-fill both" [style.width.%]="breakdown.bothPercent"></div>
+      </div>
+      <span class="bar-pct both-txt">{{ breakdown.bothPercent }}%</span>
+    </div>
+  </div>
+</div>
